@@ -1,0 +1,33 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ce74106..24d0c54 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -117,7 +117,7 @@ endif()
+ if(CMAKE_COMPILER_IS_GNUCXX OR CLANG)
+   # Note clang-cl is odd and sets both CLANG and MSVC. We base our configuration
+   # primarily on our normal Clang one.
+-  set(C_CXX_FLAGS "-Werror -Wformat=2 -Wsign-compare -Wmissing-field-initializers -Wwrite-strings -Wvla -Wshadow")
++  set(C_CXX_FLAGS "-Wformat=2 -Wsign-compare -Wmissing-field-initializers -Wwrite-strings -Wvla -Wshadow")
+   if(MSVC)
+     # clang-cl sets different default warnings than clang. It also treats -Wall
+     # as -Weverything, to match MSVC. Instead -W3 is the alias for -Wall.
+@@ -134,7 +134,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CLANG)
+       set(C_CXX_FLAGS "${C_CXX_FLAGS} -ggdb")
+     endif()
+ 
+-    set(C_CXX_FLAGS "${C_CXX_FLAGS} -Wall -fvisibility=hidden -fno-common")
++    set(C_CXX_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fno-common")
+   endif()
+ 
+   if(CLANG)
+@@ -233,8 +233,8 @@ elseif(MSVC)
+                             ${MSVC_DISABLED_WARNINGS_LIST})
+   string(REPLACE "C" " -w4" MSVC_LEVEL4_WARNINGS_STR
+                             ${MSVC_LEVEL4_WARNINGS_LIST})
+-  set(CMAKE_C_FLAGS   "-utf-8 -Wall -WX ${MSVC_DISABLED_WARNINGS_STR} ${MSVC_LEVEL4_WARNINGS_STR}")
+-  set(CMAKE_CXX_FLAGS "-utf-8 -Wall -WX ${MSVC_DISABLED_WARNINGS_STR} ${MSVC_LEVEL4_WARNINGS_STR}")
++  set(CMAKE_C_FLAGS   "-utf-8 -WX ${MSVC_DISABLED_WARNINGS_STR} ${MSVC_LEVEL4_WARNINGS_STR}")
++  set(CMAKE_CXX_FLAGS "-utf-8 -WX ${MSVC_DISABLED_WARNINGS_STR} ${MSVC_LEVEL4_WARNINGS_STR}")
+ endif()
+ 
+ if(WIN32)
